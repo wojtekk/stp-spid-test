@@ -7,30 +7,38 @@
   <script src="https://payment.schibsted.no/js/spid-sdk-1.7.9.min.js"></script>
   <script>
 
+  function handleLoginUsers() {
+    $("#logout").show();
+    $("#login").hide();
+    $("#signup").hide();
+    $("#logout a").attr("href", VGS.getLogoutURI() )
+    $("#user a").text(data.session.displayName);
+  }
+  
+  function handleLogoutUsers() {
+    $("#logout").hide();
+    $("#login").show();
+    $("#signup").show();
+    $("#login a").attr("href", VGS.getLoginURI() )
+    $("#signup a").attr("href", VGS.getSignupURI() )
+    $("#user a").text("Not logged in");
+  }
+
   VGS.Event.subscribe('auth.login', function(data) {
-      console.log(data);
+      handleLoginUsers()
     });
   
   VGS.Event.subscribe('auth.logout', function(data) {
-      console.log(data);
+      handleLogoutUsers();
     });
     
   VGS.Event.subscribe('auth.sessionChange', function(data) {
-    var sess = data.session || {};
-    if( sess ) {
-      $("#logout").show();
-      $("#login").hide();
-      $("#signup").hide();
-      $("#logout a").attr("href", VGS.getLogoutURI() )
-      $("#user a").text(data.session.displayName);
-    } else {
-      $("#logout").hide();
-      $("#login").show();
-      $("#signup").show();
-      $("#login a").attr("href", VGS.getLoginURI() )
-      $("#signup a").attr("href", VGS.getSignupURI() )
-      $("#user a").text("Not logged in");
-    }
+      var sess = data.session || {};
+      if( sess ) {
+        handleLoginUsers()
+      } else {
+        handleLogoutUsers();
+      }
     });
   
   VGS.init({
