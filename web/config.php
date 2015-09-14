@@ -1,5 +1,8 @@
 <?php
 
+ini_set("display_errors", "1");
+error_reporting(E_ALL);
+
 $ourBaseURL = "http://stp-spid-test.i.bt.no";
 $spidBaseURL = "https://payment.schibsted.no";
 $clientID = "55f6e4c1efd8c056041fbe75";
