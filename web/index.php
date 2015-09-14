@@ -25,17 +25,17 @@
   }
 
   VGS.Event.subscribe('auth.login', function(data) {
-      console.log(data);
+      console.log("auth.login", data);
       handleLoginUsers(data)
     });
   
   VGS.Event.subscribe('auth.logout', function(data) {
-      console.log(data);
+      console.log("auth.logout", data);
       handleLogoutUsers(data);
     });
     
   VGS.Event.subscribe('auth.sessionChange', function(data) {
-      console.log(data);
+      console.log("auth.sessionChange", data);
       var sess = data.session || {};
       if( sess ) {
         handleLoginUsers(data)
