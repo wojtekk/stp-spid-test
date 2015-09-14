@@ -36,7 +36,7 @@ $(document).ready(function() {
     
   VGS.Event.subscribe('auth.sessionChange', function(data) {
       console.log("auth.sessionChange", data);
-      var sess = data.session || {};
+      var sess = data.session || null;
       if( sess ) {
         handleLoginUsers(data)
       } else {
