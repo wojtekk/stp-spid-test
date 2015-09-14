@@ -3,7 +3,7 @@
 ini_set("display_errors", "1");
 error_reporting(E_ALL);
 
-$ourBaseURL = "http://stp-spid-test.i.bt.no";
+$ourBaseURL = "https://stp-spid-test.i.bt.no";
 $spidBaseURL = "https://payment.schibsted.no";
 $clientID = "55f6e4c1efd8c056041fbe75";
 
@@ -16,7 +16,7 @@ $spidClientConfig = array(
 	\VGS_Client::HTTPS              => true,
 	\VGS_Client::COOKIE             => false,
 	\VGS_Client::API_VERSION        => 2,
-	\VGS_Client::REDIRECT_URI       => "http://stp-spid-test.i.bt.no/server-test.php",
+	\VGS_Client::REDIRECT_URI       => "https://stp-spid-test.i.bt.no/server-test.php",
 	\VGS_Client::PRODUCTION         => false,
 	\VGS_Client::DOMAIN             => "stp-spid-test.i.bt.no"
 );
