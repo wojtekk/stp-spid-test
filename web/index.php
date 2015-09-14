@@ -38,9 +38,9 @@
       console.log(data);
       var sess = data.session || {};
       if( sess ) {
-        handleLoginUsers()
+        handleLoginUsers(data)
       } else {
-        handleLogoutUsers();
+        handleLogoutUsers(data);
       }
     });
   
