@@ -6,7 +6,7 @@
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://payment.schibsted.no/js/spid-sdk-1.7.9.min.js"></script>
   <script>
-
+$(document).ready(function() {
   function handleLoginUsers(data) {
     $("#logout").show();
     $("#login").hide();
@@ -48,6 +48,7 @@
     client_id: "55f6e4c1efd8c056041fbe75",
     server: "payment.schibsted.no"
   });
+});
   </script>
 </head>
 <body>
