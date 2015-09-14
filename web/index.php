@@ -8,21 +8,29 @@
   <script>
 
   VGS.Event.subscribe('auth.login', function(data) {
-      $("#logout").show();
-      $("#login").hide();
-      $("#logout a").attr("href", VGS.getLogoutURI() )
-      $("#user a").text(data.session.displayName);
+      console.log(data);
     });
   
   VGS.Event.subscribe('auth.logout', function(data) {
-      $("#logout").hide();
-      $("#login").show();
-      $("#login a").attr("href", VGS.getLoginURI() )
-      $("#user a").text("Not logged in");
+      console.log(data);
     });
     
   VGS.Event.subscribe('auth.sessionChange', function(data) {
-    console.log(data);
+    var sess = data.session || {};
+    if( sess ) {
+      $("#logout").show();
+      $("#login").hide();
+      $("#signup").hide();
+      $("#logout a").attr("href", VGS.getLogoutURI() )
+      $("#user a").text(data.session.displayName);
+    } else {
+      $("#logout").hide();
+      $("#login").show();
+      $("#signup").show();
+      $("#login a").attr("href", VGS.getLoginURI() )
+      $("#signup a").attr("href", VGS.getSignupURI() )
+      $("#user a").text("Not logged in");
+    }
     });
   
   VGS.init({
@@ -33,12 +41,14 @@
 </head>
 <body>
   <h1>STP SPiD Test</h1>
+  <h2>JavaScript</h2>
   <dl>
     <dt>Options</dt>
+    <dd id="signup"><a href="">Signup</a></dd>
     <dd id="login"><a href="">Login</a></dd>
     <dd id="logout"><a href="">Logout</a></dd>
     <dt>User</dt>
-    <dd id="user"></dd>
+    <dd id="user">Unknown</dd>
   </dl>
 </body>
 </html>
