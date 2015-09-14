@@ -12,7 +12,7 @@ $(document).ready(function() {
     $("#login").hide();
     $("#signup").hide();
     $("#logout a").attr("href", VGS.getLogoutURI() )
-    $("#user a").text(data.session.displayName);
+    $("#user").text(data.session.displayName);
   }
   
   function handleLogoutUsers(data) {
@@ -21,7 +21,7 @@ $(document).ready(function() {
     $("#signup").show();
     $("#login a").attr("href", VGS.getLoginURI() )
     $("#signup a").attr("href", VGS.getSignupURI() )
-    $("#user a").text("Not logged in");
+    $("#user").text("Not logged in");
   }
 
   VGS.Event.subscribe('auth.login', function(data) {
