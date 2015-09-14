@@ -9,7 +9,7 @@ if ($client) {
   unset($_SESSION['client']);
   unset($_SESSION['user']);
   $spidLogoutURL = $spidBaseURL . "/logout" .
-    "?redirect_uri=" . $ourBaseURL . '/server-test.php' .
+    "?redirect_uri=" . rawurlencode($ourBaseURL . '/server-test.php' ) .
     "&oauth_token=" . $client->getAccessToken();
   header("Location: " . $spidLogoutURL);
 }

@@ -6,9 +6,9 @@ require_once(__DIR__ . '/config.php');
 session_start();
 
 $spidAuthorizeURL = $spidBaseURL . "/oauth/authorize" .
-  "?client_id=" . $clientID .
+  "?client_id=" . rawurlencode($clientID) .
   "&response_type=code" .
-  "&redirect_uri=" . $ourBaseURL . "/createSession.php";
+  "&redirect_uri=" . rawurlencode($ourBaseURL . "/createSession.php");
 
 $user = isset($_SESSION['user']) ? $_SESSION['user'] : false;
 if ($user) {
