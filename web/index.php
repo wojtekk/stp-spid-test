@@ -7,7 +7,7 @@
   <script src="https://payment.schibsted.no/js/spid-sdk-1.7.9.min.js"></script>
   <script>
 
-  function handleLoginUsers() {
+  function handleLoginUsers(data) {
     $("#logout").show();
     $("#login").hide();
     $("#signup").hide();
@@ -15,7 +15,7 @@
     $("#user a").text(data.session.displayName);
   }
   
-  function handleLogoutUsers() {
+  function handleLogoutUsers(data) {
     $("#logout").hide();
     $("#login").show();
     $("#signup").show();
