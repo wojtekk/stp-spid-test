@@ -1,0 +1,11 @@
+language: php
+php: 5.5
+install: composer install
+script:
+- phpunit --testdox --bootstrap vendor/autoload.php tests/phpunit/
+deploy:
+  provider: heroku
+  api_key:
+    secure: "EOc/eRytIBYqML2+O1e3sXqPCr080rAA8zfG+/B+QF7uMI8b07feflePU0OhtA1QLeebYHQ16ads5UUUU1nIsqq1HXtv6tSU4icg6BC6FiXbvq6yht7bGHAGKAKIvcQdSbaJeshobFL0/Sqp1LMkRbViFidH/n1hwQx6ZztMdPo="
+  app:
+    master: stp-spid-test-stage
