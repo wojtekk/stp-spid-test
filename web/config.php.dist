@@ -7,9 +7,6 @@ $ourBaseURL = "https://stp-spid-test.i.bt.no";
 $spidBaseURL = "https://payment.schibsted.no";
 $clientID = "55f6e4c1efd8c056041fbe75";
 
-$_ENV['VGS_CLIENT_SECRET'] = '';
-$_ENV['VGS_CLIENT_SIGN_SECRET'] = '';
-
 $spidClientConfig = array(
 	\VGS_Client::CLIENT_ID          => $clientID,
 	\VGS_Client::CLIENT_SECRET      => $_ENV['VGS_CLIENT_SECRET'],
