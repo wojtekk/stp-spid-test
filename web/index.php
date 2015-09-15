@@ -11,10 +11,11 @@
         $("#logout").show();
         $("#login").hide();
         $("#signup").hide();
+
         $("#logout a").attr("href", VGS.getLogoutURI());
         $("#logout a").click(function () {
           VGS.Auth.logout(function () {
-            document.location.reload();
+            document.location.href = $("#logout a").attr("href");
           });
         });
         $("#user").text(data.session.displayName);
@@ -24,23 +25,27 @@
         $("#logout").hide();
         $("#login").show();
         $("#signup").show();
-        $("#login a").attr("href", VGS.getLoginURI())
-        $("#signup a").attr("href", VGS.getSignupURI())
         $("#user").text("Not logged in");
+
+        $("#login a").attr("href", VGS.getLoginURI());
+        $("#signup a").attr("href", VGS.getSignupURI());
       }
 
       VGS.Event.subscribe('auth.login', function (data) {
         console.log("auth.login", data);
+
         handleLoginUsers(data)
       });
 
       VGS.Event.subscribe('auth.logout', function (data) {
         console.log("auth.logout", data);
+
         handleLogoutUsers(data);
       });
 
       VGS.Event.subscribe('auth.sessionChange', function (data) {
         console.log("auth.sessionChange", data);
+
         var sess = data.session || null;
         if (sess) {
           handleLoginUsers(data)
