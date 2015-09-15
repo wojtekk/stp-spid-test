@@ -3,6 +3,7 @@ php: 5.5
 install: composer install
 script:
 - phpunit --testdox --bootstrap vendor/autoload.php tests/phpunit/
+- scripts/build.sh
 deploy:
   provider: heroku
   api_key:

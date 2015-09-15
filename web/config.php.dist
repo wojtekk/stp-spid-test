@@ -5,12 +5,15 @@ error_reporting(E_ALL);
 
 $ourBaseURL = "https://stp-spid-test.i.bt.no";
 $spidBaseURL = "https://payment.schibsted.no";
-$clientID = "55f88006aaa79ce44cd1ab6f";
+$clientID = "55f6e4c1efd8c056041fbe75";
+
+$_ENV['VGS_CLIENT_SECRET'] = '';
+$_ENV['VGS_CLIENT_SIGN_SECRET'] = '';
 
 $spidClientConfig = array(
 	\VGS_Client::CLIENT_ID          => $clientID,
-	\VGS_Client::CLIENT_SECRET      => 'rNUxIkQzSieNFCyLvBQW',
-	\VGS_Client::CLIENT_SIGN_SECRET => 'aqUOUQU0yRbbdsMzudd9',
+	\VGS_Client::CLIENT_SECRET      => $_ENV['VGS_CLIENT_SECRET'],
+	\VGS_Client::CLIENT_SIGN_SECRET => $_ENV['VGS_CLIENT_SIGN_SECRET'],
 	\VGS_Client::STAGING_DOMAIN     => "stage.payment.schibsted.no",
 	\VGS_Client::PRODUCTION_DOMAIN  => "payment.schibsted.no",
 	\VGS_Client::HTTPS              => true,
