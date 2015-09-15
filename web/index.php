@@ -5,24 +5,36 @@
   <title>STP SPiD Test</title>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://payment.schibsted.no/js/spid-sdk-1.7.9.min.js"></script>
+  <style>
+    dd {
+      display: none;
+    }
+
+    #user {
+      display: block;
+    }
+  </style>
   <script>
     $(document).ready(function () {
-      function handleLoginUsers(data) {
+      function handleUser(response) {
+        if (typeof (response.session) === 'object' && response.status === 'connected') {
+          handleLoginUsers(response)
+        } else {
+          handleLogoutUsers(response);
+        }
+      }
+
+      function handleLoginUsers(response) {
         $("#logout").show();
-        $("#login").hide();
-        $("#signup").hide();
 
         $("#logout a").attr("href", VGS.getLogoutURI());
         $("#logout a").click(function () {
-          VGS.Auth.logout(function () {
-            document.location.href = $("#logout a").attr("href");
-          });
+          VGS.Auth.logout();
         });
-        $("#user").text(data.session.displayName);
+        $("#user").html('<a href="' + VGS.getAccountURI() + '">' + response.session.displayName + '</a>');
       }
 
-      function handleLogoutUsers(data) {
-        $("#logout").hide();
+      function handleLogoutUsers(response) {
         $("#login").show();
         $("#signup").show();
         $("#user").text("Not logged in");
@@ -31,27 +43,14 @@
         $("#signup a").attr("href", VGS.getSignupURI());
       }
 
-      VGS.Event.subscribe('auth.login', function (data) {
-        console.log("auth.login", data);
-
-        handleLoginUsers(data)
+      VGS.Event.subscribe('auth.sessionChange', function (response) {
+        console.log("auth.sessionChange", response);
+        handleUser(response);
       });
 
-      VGS.Event.subscribe('auth.logout', function (data) {
-        console.log("auth.logout", data);
-
-        handleLogoutUsers(data);
-      });
-
-      VGS.Event.subscribe('auth.sessionChange', function (data) {
-        console.log("auth.sessionChange", data);
-
-        var sess = data.session || null;
-        if (sess) {
-          handleLoginUsers(data)
-        } else {
-          handleLogoutUsers(data);
-        }
+      VGS.Event.subscribe('VGS.error', function (response) {
+        console.log("VGS.error", response);
+        handleUser(response);
       });
 
       VGS.init({
@@ -63,7 +62,6 @@
 </head>
 <body>
 <h1>STP SPiD Test</h1>
-
 <h2>JavaScript</h2>
 <dl>
   <dt>Options</dt>
