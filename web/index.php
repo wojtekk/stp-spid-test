@@ -11,10 +11,13 @@
       $("#logout").show();
       $("#login").hide();
       $("#signup").hide();
-      $("#logout a").attr("href", VGS.getLogoutURI() )
+      $("#logout a").attr("href", VGS.getLogoutURI() );
+      $("#logout a").click( function() {
+        VGS.Auth.logout( function() { document.location.reload(); } );
+      });
       $("#user").text(data.session.displayName);
     }
-    
+
     function handleLogoutUsers(data) {
       $("#logout").hide();
       $("#login").show();
@@ -23,17 +26,17 @@
       $("#signup a").attr("href", VGS.getSignupURI() )
       $("#user").text("Not logged in");
     }
-  
+
     VGS.Event.subscribe('auth.login', function(data) {
         console.log("auth.login", data);
         handleLoginUsers(data)
       });
-    
+
     VGS.Event.subscribe('auth.logout', function(data) {
         console.log("auth.logout", data);
         handleLogoutUsers(data);
       });
-      
+
     VGS.Event.subscribe('auth.sessionChange', function(data) {
         console.log("auth.sessionChange", data);
         var sess = data.session || null;
@@ -43,7 +46,7 @@
           handleLogoutUsers(data);
         }
       });
-    
+
     VGS.init({
       client_id: "55f6e4c1efd8c056041fbe75",
       server: "payment.schibsted.no"
