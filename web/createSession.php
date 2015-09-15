@@ -12,4 +12,4 @@ session_start();
 $_SESSION['client'] = $client;
 $_SESSION['user'] = $user;
 
-header("Location: /serwer-test.php");
+header("Location: /server-test.php");
