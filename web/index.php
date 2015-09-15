@@ -6,49 +6,49 @@
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://payment.schibsted.no/js/spid-sdk-1.7.9.min.js"></script>
   <script>
-$(document).ready(function() {
-  function handleLoginUsers(data) {
-    $("#logout").show();
-    $("#login").hide();
-    $("#signup").hide();
-    $("#logout a").attr("href", VGS.getLogoutURI() )
-    $("#user").text(data.session.displayName);
-  }
-  
-  function handleLogoutUsers(data) {
-    $("#logout").hide();
-    $("#login").show();
-    $("#signup").show();
-    $("#login a").attr("href", VGS.getLoginURI() )
-    $("#signup a").attr("href", VGS.getSignupURI() )
-    $("#user").text("Not logged in");
-  }
-
-  VGS.Event.subscribe('auth.login', function(data) {
-      console.log("auth.login", data);
-      handleLoginUsers(data)
-    });
-  
-  VGS.Event.subscribe('auth.logout', function(data) {
-      console.log("auth.logout", data);
-      handleLogoutUsers(data);
-    });
+  $(document).ready(function() {
+    function handleLoginUsers(data) {
+      $("#logout").show();
+      $("#login").hide();
+      $("#signup").hide();
+      $("#logout a").attr("href", VGS.getLogoutURI() )
+      $("#user").text(data.session.displayName);
+    }
     
-  VGS.Event.subscribe('auth.sessionChange', function(data) {
-      console.log("auth.sessionChange", data);
-      var sess = data.session || null;
-      if( sess ) {
-        handleLoginUsers(data)
-      } else {
-        handleLogoutUsers(data);
-      }
-    });
+    function handleLogoutUsers(data) {
+      $("#logout").hide();
+      $("#login").show();
+      $("#signup").show();
+      $("#login a").attr("href", VGS.getLoginURI() )
+      $("#signup a").attr("href", VGS.getSignupURI() )
+      $("#user").text("Not logged in");
+    }
   
-  VGS.init({
-    client_id: "55f6e4c1efd8c056041fbe75",
-    server: "payment.schibsted.no"
+    VGS.Event.subscribe('auth.login', function(data) {
+        console.log("auth.login", data);
+        handleLoginUsers(data)
+      });
+    
+    VGS.Event.subscribe('auth.logout', function(data) {
+        console.log("auth.logout", data);
+        handleLogoutUsers(data);
+      });
+      
+    VGS.Event.subscribe('auth.sessionChange', function(data) {
+        console.log("auth.sessionChange", data);
+        var sess = data.session || null;
+        if( sess ) {
+          handleLoginUsers(data)
+        } else {
+          handleLogoutUsers(data);
+        }
+      });
+    
+    VGS.init({
+      client_id: "55f6e4c1efd8c056041fbe75",
+      server: "payment.schibsted.no"
+    });
   });
-});
   </script>
 </head>
 <body>
