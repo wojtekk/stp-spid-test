@@ -1,22 +1,27 @@
 {
-    "name": "bt/perks-api",
-    "require": {
-        "schibsted/sdk-php": "~2.4"
-    },
-    "require-dev": {
-      "phpunit/phpunit": "~4.7",
-      "heroku/heroku-buildpack-php": "*"
-    },
-    "authors": [
-        {
-            "name": "Wojciech Krawczyk",
-            "email": "wojciech.krawczyk@schibsted.pl"
-        }
-    ],
-    "autoload": {
-      "psr-4": {
-        "PerksApi\\": "src"
-      },
-      "files": ["vendor/schibsted/sdk-php/src/Client.php"]
+  "name": "bt/perks-api",
+  "require": {
+    "schibsted/sdk-php": "~2.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.7",
+    "heroku/heroku-buildpack-php": "*"
+  },
+  "authors": [
+    {
+      "name": "Wojciech Krawczyk",
+      "email": "wojciech.krawczyk@schibsted.pl"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "PerksApi\\": "src"
+    },
+    "files": [
+      "vendor/schibsted/sdk-php/src/Client.php"
+    ]
+  },
+  "scripts": {
+    "post-install-cmd": "php -r \"copy('web/config.php.dist', 'web/config.php');\""
+  }
 }
