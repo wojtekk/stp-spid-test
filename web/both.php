@@ -6,6 +6,8 @@ session_start();
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once(__DIR__ . '/config.php');
 
+$SPID_CREDENTIALS['domain'] = '.bt.no';
+
 // Instantiate the SDK client
 $client = new VGS_Client($SPID_CREDENTIALS);
 $client->argSeparator = '&';
